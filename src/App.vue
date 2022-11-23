@@ -6,10 +6,7 @@
       <NavComponent v-if="true"></NavComponent>
       <hr />
       <section class="contents">
-        <div>
-          <h3>Members</h3>
-          <p>Contents</p>
-        </div>
+        <router-view></router-view>
       </section>
       <hr />
     </div>
