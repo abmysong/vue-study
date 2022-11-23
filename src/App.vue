@@ -1,16 +1,9 @@
 <template>
   <div id="app">
-    <header>
-      <h1>Vue.js study</h1>
-    </header>
+    <HeaderComponent v-show="true"></HeaderComponent>
     <hr />
     <div class="container">
-      <nav class="nav">
-        <ul>
-          <li><h2>Members</h2></li>
-          <li><h2>Search</h2></li>
-        </ul>
-      </nav>
+      <NavComponent v-if="true"></NavComponent>
       <hr />
       <section class="contents">
         <div>
@@ -20,6 +13,20 @@
       </section>
       <hr />
     </div>
-    <footer>Copyright</footer>
+    <FooterComponent :title="'카피라이트'"></FooterComponent>
   </div>
 </template>
+
+<script>
+import HeaderComponent from './components/HeaderComponent.vue'
+import NavComponent from './components/NavComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
+
+export default {
+  components: {
+    HeaderComponent,
+    NavComponent,
+    FooterComponent
+  }
+}
+</script>
