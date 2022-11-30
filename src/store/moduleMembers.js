@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const moduleMembers = {
   state: {
     members: [],
@@ -13,11 +15,12 @@ export const moduleMembers = {
   },
   actions: {
     membersCreate(thisStore, member) {
-      thisStore.state.members.push({
-        name: member.name,
-        age: member.age
+      axios.post('http://localhost:3100/api/v1/members', member).then(function(response) {
+        console.log('Done membersCreate', response)
+        thisStore.dispatch('membersRead')
+      }).catch(function(error) {
+        thisStore.dispatch('axiosError', error)
       })
-      console.log('Done membersCreate', thisStore.state.members)
     },
     membersRead(thisStore) {
       const members = [{
