@@ -23,13 +23,12 @@ export const moduleMembers = {
       })
     },
     membersRead(thisStore) {
-      const members = [{
-        name: '홍길동',
-        age: 20
-      }]
-      thisStore.commit('membersRead', members)
-      // thisStore.state.members = members
-      console.log('Done membersRead', thisStore.state.members)
+      axios.get('http://localhost:3100/api/v1/members').then(function(response) {
+        console.log('Done membersRead', response)
+        thisStore.commit('membersRead', response.data.members)
+      }).catch(function(error) {
+        thisStore.dispatch('axiosError', error)
+      })
     },
     membersDelete(thisStore, index) {
       thisStore.state.members.splice(index, 1)
