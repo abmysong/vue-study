@@ -39,8 +39,12 @@ export const moduleMembers = {
       })
     },
     membersUpdate(thisStore, { index, member }) {
-      thisStore.state.members[index] = member
-      console.log('Done membersUpdate', thisStore.state.members)
+      axios.patch('http://localhost:3100/api/v1/members/' + index, member).then(function(response) {
+        console.log('Done membersUpdate', response)
+        thisStore.dispatch('membersRead')
+      }).catch(function(error) {
+        thisStore.dispatch('axiosError', error)
+      })
     }
   }
 }
