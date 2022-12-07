@@ -3,8 +3,8 @@
     <h3>Search</h3>
     <hr class="d-block" />
     <div>
-      <form>
-        <input type="text" placeholder="Search">
+      <form @submit.prevent="searchRead()">
+        <input type="text" placeholder="Search" v-model="q" />
         <button>Search</button>
       </form>
     </div>
@@ -30,9 +30,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      q: ''
+    }
+  },
   computed: {
     members() {
       return this.$store.state.$members.members
+    }
+  },
+  methods: {
+    searchRead() {
+      this.$store.dispatch('searchRead', this.q)
     }
   },
   created() {
