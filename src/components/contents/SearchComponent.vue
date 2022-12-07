@@ -42,11 +42,15 @@ export default {
   },
   methods: {
     searchRead() {
-      this.$store.dispatch('searchRead', this.q)
+      this.$router.push({
+        name: 'Search',
+        query: { q: this.q }
+      })
     }
   },
   created() {
-    this.$store.dispatch('searchRead', '')
+    this.q = this.$route.query.q || ''
+    this.$store.dispatch('searchRead', this.q)
   }
 }
 </script>
