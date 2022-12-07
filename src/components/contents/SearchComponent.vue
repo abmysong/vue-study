@@ -35,6 +35,16 @@ export default {
       q: ''
     }
   },
+  watch: {
+    '$route.query': function(query, beforeQuery) {
+      console.log(query, beforeQuery)
+      this.q = query.q || ''
+      this.$store.dispatch('searchRead', this.q)
+    },
+    q: function(q, beforeQ) {
+      console.log(q, beforeQ)
+    }
+  },
   computed: {
     members() {
       return this.$store.state.$members.members
