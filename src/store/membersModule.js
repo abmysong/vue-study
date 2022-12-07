@@ -15,7 +15,7 @@ export const membersModule = {
   },
   actions: {
     membersCreate(thisStore, member) {
-      axios.post('http://localhost:3100/api/v1/members', member).then(function(response) {
+      axios.post('/api/v1/members', member).then(function(response) {
         console.log('Done membersCreate', response)
         thisStore.dispatch('membersRead')
       }).catch(function(error) {
@@ -23,7 +23,7 @@ export const membersModule = {
       })
     },
     membersRead(thisStore) {
-      axios.get('http://localhost:3100/api/v1/members').then(function(response) {
+      axios.get('/api/v1/members').then(function(response) {
         console.log('Done membersRead', response)
         thisStore.commit('membersRead', response.data.members)
       }).catch(function(error) {
@@ -31,7 +31,7 @@ export const membersModule = {
       })
     },
     membersDelete(thisStore, index) {
-      axios.delete('http://localhost:3100/api/v1/members/' + index).then(function(response) {
+      axios.delete('/api/v1/members/' + index).then(function(response) {
         console.log('Done membersDelete', response)
         thisStore.dispatch('membersRead')
       }).catch(function(error) {
@@ -39,7 +39,7 @@ export const membersModule = {
       })
     },
     membersUpdate(thisStore, { index, member }) {
-      axios.patch('http://localhost:3100/api/v1/members/' + index, member).then(function(response) {
+      axios.patch('/api/v1/members/' + index, member).then(function(response) {
         console.log('Done membersUpdate', response)
         thisStore.dispatch('membersRead')
       }).catch(function(error) {
