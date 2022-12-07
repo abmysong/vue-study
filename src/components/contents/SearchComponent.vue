@@ -1,6 +1,42 @@
 <template>
   <div>
     <h3>Search</h3>
-    <p>Contents</p>
+    <hr class="d-block" />
+    <div>
+      <form>
+        <input type="text" placeholder="Search">
+        <button>Search</button>
+      </form>
+    </div>
+    <hr class="d-block" />
+    <div>
+      <table class="table-search">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(member, key) in members" :key="key">
+            <td>{{member.name}}</td>
+            <td>{{member.age}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    members() {
+      return this.$store.state.$members.members
+    }
+  },
+  created() {
+    this.$store.dispatch('searchRead', '')
+  }
+}
+</script>

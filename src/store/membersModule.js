@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const moduleMembers = {
+export const membersModule = {
   state: {
     members: [],
     member: {
